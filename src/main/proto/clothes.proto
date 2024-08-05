@@ -1,0 +1,95 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "protobuf.clothes";
+
+package clothes;
+
+message ClothesProto {
+  string id = 1;
+  string name = 2;
+  string size = 3;
+  int32 quantity = 4;
+  double price = 5;
+  Payment payment = 6;
+  string isbnOfCloth = 7;
+}
+
+enum Payment {
+  PAID = 0;
+  NOT_PAID = 1;
+  IN_SHOP = 2;
+}
+
+service ClothesService {
+  rpc CreateClothOrder (CreateClothOrderRequest) returns (CreateClothOrderResponse);
+  rpc CreateCloth (CreateClothRequest) returns (CreateClothResponse);
+  rpc UpdateCloth (UpdateClothRequest) returns (UpdateClothResponse);
+  rpc FindCloth (FindClothRequest) returns (FindClothResponse);
+  rpc DeleteCloth (DeleteClothRequest) returns (DeleteClothResponse);
+  rpc FindClothByIsbn (FindClothByIsbnRequest) returns (FindClothByIsbnResponse);
+}
+
+message FindClothByIsbnRequest {
+  string isbn = 1;
+}
+
+message FindClothByIsbnResponse {
+  ClothesProto clothes = 1;
+}
+
+message CreateClothOrderRequest {
+  string userEmail = 1;
+  string id = 2;
+  string name = 3;
+}
+
+message CreateClothOrderResponse {
+  ClothesProto cloth = 1;
+}
+
+message CreateClothRequest {
+  string name = 1;
+  string size = 2;
+  int64 quantity = 3;
+  double price = 4;
+  string isbnOfCloth = 5;
+}
+
+message CreateClothResponse {
+  ClothesProto cloth = 1;
+}
+
+message UpdateClothRequest {
+  string id = 1;
+  string name = 2;
+  string size = 3;
+  int64 quantity = 4;
+  double price = 5;
+  Payment payment = 6;
+  string isbnOfCloth = 7;
+}
+
+message UpdateClothResponse {
+  ClothesProto cloth = 1;
+}
+
+message FindClothRequest {
+  string id = 1;
+}
+
+message FindClothResponse {
+  ClothesProto cloth = 1;
+}
+
+message DeleteClothRequest {
+  string id = 1;
+}
+
+message DeleteClothResponse {
+  string message = 1;
+}
+
+
+
+
