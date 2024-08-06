@@ -6,18 +6,15 @@ import net.devh.boot.grpc.server.service.GrpcService;
 import org.practice.grpcmaven.mapper.MapperGrpc;
 import org.practice.grpcmaven.models.entity.Users;
 import org.practice.grpcmaven.repo.UsersRepo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import protobuf.users.*;
 
 @GrpcService
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class UsersService extends UsersServiceGrpc.UsersServiceImplBase {
 
     private final UsersRepo usersRepo;
-    private Logger loggerFactory = LoggerFactory.getLogger(UsersService.class);
 
     @Override
     public void registerUser(RegisterUserRequest request, StreamObserver<RegisterUserResponse> responseObserver) {

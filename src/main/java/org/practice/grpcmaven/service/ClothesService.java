@@ -5,12 +5,7 @@ import lombok.RequiredArgsConstructor;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.practice.grpcmaven.mapper.MapperGrpc;
 import org.practice.grpcmaven.models.entity.Clothes;
-import org.practice.grpcmaven.models.entity.Users;
 import org.practice.grpcmaven.repo.ClothesRepo;
-import org.practice.grpcmaven.repo.OrdersRepo;
-import org.practice.grpcmaven.repo.UsersRepo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import protobuf.clothes.*;
 
@@ -22,10 +17,6 @@ import java.util.List;
 public class ClothesService extends ClothesServiceGrpc.ClothesServiceImplBase {
 
     private final ClothesRepo clothesRepo;
-    private final UsersRepo usersRepo;
-    private final OrdersRepo ordersRepo;
-
-    private Logger loggerFactory = LoggerFactory.getLogger(ClothesService.class);
 
     @Override
     public void createCloth(CreateClothRequest createClothRequest, StreamObserver<CreateClothResponse> streamObserver) {

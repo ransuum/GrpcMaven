@@ -13,9 +13,6 @@ import org.practice.grpcmaven.repo.UsersRepo;
 import org.springframework.stereotype.Service;
 import protobuf.orders.*;
 
-import java.util.Map;
-
-
 @GrpcService
 @Service
 @RequiredArgsConstructor
