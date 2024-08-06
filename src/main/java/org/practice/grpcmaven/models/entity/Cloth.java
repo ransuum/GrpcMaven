@@ -8,12 +8,11 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.relational.core.mapping.Table;
 import protobuf.clothes.Payment;
 
-import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table("clothes")
+@Table("clothes_grpc")
 @Builder
 @Entity
 public class Cloth {
@@ -34,7 +33,7 @@ public class Cloth {
     @Column(nullable = false)
     private Double price;
 
-    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Payment paymentMethod;
 
     @Column(nullable = false)
