@@ -14,17 +14,6 @@ message UsersProto {
   string firstName = 6;
   string middleName = 7;
   string lastName = 8;
-  repeated ClothesProto clothesOrder = 9;
-}
-
-message ClothesProto{
-  string id = 1;
-  string name = 2;
-  string size = 3;
-  int32 quantity = 4;
-  double price = 5;
-  PaymentInfo payment = 6;
-  string isbnOfCloth = 7;
 }
 
 enum PaymentInfo {
@@ -38,6 +27,7 @@ service UsersService {
   rpc LoginUser (LoginUserRequest) returns (LoginUserResponse);
   rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse);
   rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse);
+  rpc FindByEmail (FindByEmailRequest) returns (FindByEmailResponse);
 }
 
 message RegisterUserRequest {
@@ -82,5 +72,14 @@ message DeleteUserResponse {
   string email = 1;
   string message = 2;
 }
+
+message FindByEmailRequest {
+  string email = 1;
+}
+
+message FindByEmailResponse {
+  UsersProto user = 1;
+}
+
 
 

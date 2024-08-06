@@ -1,19 +1,17 @@
 package org.practice.grpcmaven.models.entity;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table("users_grpc")
+@Table("users")
 @Builder
 @Entity
 public class Users {
@@ -26,13 +24,15 @@ public class Users {
     private String email;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String password;
+
 
     @Column(nullable = false, unique = true)
     private String phone;
 
     @Column(nullable = false)
-    private Integer age;
+    private Long age;
 
     @Column(nullable = false)
     private String firstName;
@@ -42,8 +42,4 @@ public class Users {
 
     @Column(nullable = false)
     private String lastName;
-
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "cloth_id", referencedColumnName = "id")
-    private List<Cloth> cloths = new ArrayList<>();
 }

@@ -12,7 +12,7 @@ message ClothesProto {
   int32 quantity = 4;
   double price = 5;
   Payment payment = 6;
-  string isbnOfCloth = 7;
+  string isbn = 7;
 }
 
 enum Payment {
@@ -22,12 +22,12 @@ enum Payment {
 }
 
 service ClothesService {
-  rpc CreateClothOrder (CreateClothOrderRequest) returns (CreateClothOrderResponse);
   rpc CreateCloth (CreateClothRequest) returns (CreateClothResponse);
   rpc UpdateCloth (UpdateClothRequest) returns (UpdateClothResponse);
   rpc FindCloth (FindClothRequest) returns (FindClothResponse);
   rpc DeleteCloth (DeleteClothRequest) returns (DeleteClothResponse);
   rpc FindClothByIsbn (FindClothByIsbnRequest) returns (FindClothByIsbnResponse);
+  rpc FindClothByFilter (FindClothByFilterRequest) returns (FindClothByFilterResponse);
 }
 
 message FindClothByIsbnRequest {
@@ -38,22 +38,12 @@ message FindClothByIsbnResponse {
   ClothesProto clothes = 1;
 }
 
-message CreateClothOrderRequest {
-  string userEmail = 1;
-  string id = 2;
-  string name = 3;
-}
-
-message CreateClothOrderResponse {
-  ClothesProto cloth = 1;
-}
-
 message CreateClothRequest {
   string name = 1;
   string size = 2;
   int64 quantity = 3;
   double price = 4;
-  string isbnOfCloth = 5;
+  string isbn = 5;
 }
 
 message CreateClothResponse {
@@ -67,7 +57,7 @@ message UpdateClothRequest {
   int64 quantity = 4;
   double price = 5;
   Payment payment = 6;
-  string isbnOfCloth = 7;
+  string isbn = 7;
 }
 
 message UpdateClothResponse {
@@ -88,6 +78,19 @@ message DeleteClothRequest {
 
 message DeleteClothResponse {
   string message = 1;
+}
+
+message FindClothByFilterRequest{
+  string name = 1;
+  string size = 2;
+  int32 quantity = 3;
+  double price = 4;
+  string isbn = 5;
+  string emailOfUser = 6;
+}
+
+message FindClothByFilterResponse {
+  repeated ClothesProto list = 1;
 }
 
 
